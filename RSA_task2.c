@@ -35,6 +35,6 @@ int main ()
 
     // task 3
     BN_mod_exp(res, c, d, n, ctx); // res2 = (res^d) mod n
-    printBN("decrypted message in task 3 = " res);
+    printBN("decrypted message in task 3 = ", res);
     return 0;
 }

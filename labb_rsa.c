@@ -20,7 +20,6 @@ int main ()
     BIGNUM *e = BN_new();
     BIGNUM *d = BN_new();
     BIGNUM *res = BN_new();
-    // Initialize a, b, n
     BN_hex2bn(&p, "F7E75FDC469067FFDC4E847C51F452DF");
     BN_hex2bn(&q, "E85CED54AF57E53E092113E62F436F4F");
     BN_hex2bn(&p_1, "F7E75FDC469067FFDC4E847C51F452DE");
@@ -28,7 +27,7 @@ int main ()
     BN_hex2bn(&e, "0D88C3");
     BN_mul(n, p, q, ctx);
     BN_mul(res, p_1, q_1, ctx);
-    BN_mod_inverse(e, d, res, ctx);
-    printBN("d = ", d);
+    BN_mod_inverse(d, e, res, ctx);
+    printBN("d =",d);
     return 0;
 }
