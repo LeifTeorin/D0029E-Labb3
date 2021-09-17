@@ -29,14 +29,6 @@ int main ()
     BN_mul(n, p, q, ctx);
     BN_mul(res, p_1, q_1, ctx);
     BN_mod_inverse(e, d, res, ctx);
-    BN_generate_prime_ex(a, NBITS, 1, NULL, NULL, NULL);
-    BN_dec2bn(&b, "273489463796838501848592769467194369268");
-    BN_rand(n, NBITS, 0, 0);
-    // res = a*b
-    BN_mul(res, a, b, ctx);
-    printBN("a * b = ", res);
-    // res = aˆb mod n
-    BN_mod_exp(res, a, b, n, ctx);
-    printBN("aˆc mod n = ", res);
+    printBN("d = ", d);
     return 0;
 }
