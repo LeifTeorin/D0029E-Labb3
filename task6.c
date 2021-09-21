@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <openssl/bn.h>
+#define NBITS 256
+void printBN(char *msg, BIGNUM * a)
+{
+    /* Use BN_bn2hex(a) for hex string
+    * Use BN_bn2dec(a) for decimal string */
+    char * number_str = BN_bn2hex(a);
+    printf("%s %s\n", msg, number_str);
+    OPENSSL_free(number_str);
+}
+int main ()
+{
+    BN_CTX *ctx = BN_CTX_new();
+    BIGNUM *p = BN_new();
+    BIGNUM *p_1 = BN_new();
+    BIGNUM *q_1 = BN_new();
+    BIGNUM *q = BN_new();
+    BIGNUM *n = BN_new();
+    BIGNUM *e = BN_new();
+    BIGNUM *S = BN_new();
+    BIGNUM *M = BN_new(); 
+    BIGNUM *c = BN_new();
+    BIGNUM *h = BN_new();
+    BIGNUM *res = BN_new();
+    BIGNUM *res2 = BN_new();
+
+    // Initialize, b, n
+    //PRIVATE KEY: UNKNOWN (It's private, duh)
+    BN_hex2bn(&h, "3b34ee86d25f488958954fdba6a7fe0a8ff1edb706d89f2963dcf8ddc437c12f");
+    BN_hex2bn(&e, "10001");
+    BN_hex2bn(&n, "990937182BE03CB9C7D43BE0A6F6793A5B5233438ABACFD887F0E271BB1C40666F541BECED94790934FC117ABC8FDAE90A9BB678DEB85E4CCFDB2CFB654B1CBD2F8C979E7F96FF4FA3391C2C86E60974FD79B8FD4967B598616F61EC443085A71C2D57E4E647429CB24D8D936C0D9FBD3D3174427EC658E9B794866B2F9CE62FCD90E557A72B928E26AD2E5D264D8F21556F6B59507DFA5F289819CD8B066BC20E4C931EDB99F3B307987F3E748EFCF9C61128261069662E87CA6E36B8E024D8293E87793CD15E68B7E6C9062928EA50340F9ADE83E7C6BB4C3629CD65E678ED40F16E56FA36A33CE248D86A470E248D1E4A871F0E23D37C63B9FFB4073E1323");
+    BN_hex2bn(&S, "2745b49aaf444ecf7556d994848b748cbe8a6210142ade9ef076141d0dceab08e9edff7442dae79b1960be58a67bfe6dc10bb384feec269b7fd8c37ce507d6a4c0c5dcbe21c95688fad3553b1da875a7effdeb0fc6cad0f08210cf035bbbc8bdbdc066b2910fa523c9e0e01f2686b17d735a4620e3bea3d7068e79c2f54092b096024117bc80ae0e62f767d0b284ac679f184f74294d911a4c73ac219bf97fde8aedd1906f9900779368da174a0f072328c9ca00c5431bfb99640b38f36605560b3f782c840a11fe00cea5e224ad5b021e5aaed1834e78b0b2f3857521e9f1d468611c55d2a74ae77cf5edc5e453a6b4ad2e0605abf6de600d58d90eac2b54c2");
+    //Jesse, JESSE- Did you just ask Gus launch a nuclear missile?
+    BN_mod_exp(res, S, e, n, ctx);
+    printBN("verified ", res);
+    printBN("hash ", h);
+    return 0;
+}

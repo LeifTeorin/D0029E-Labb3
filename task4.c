@@ -31,17 +31,17 @@ int main ()
 
     //And thus the task begins
     BN_hex2bn(&M, "49206f776520796f752024323030302e"); //"I owe you $2000."
-    BN_mod_exp(res, M, e, n, ctx); // res = (M^e) mod n
-    printBN("encrypted message $2000 = ", res);
-    BN_mod_exp(res2, res, d, n, ctx); // res2 = (res^d) mod n
-    printBN("decrypted message $2000 =", res2);
+    BN_mod_exp(res, M, d, n, ctx); // res = (M^d) mod n
+    printBN("signed message $2000 = ", res);
+    BN_mod_exp(res2, res, e, n, ctx); // res2 = (res^d) mod n
+    printBN("verified message $2000 =", res2);
 
     //But all of a sudden it changes
     BN_hex2bn(&M, "49206f776520796f752024333030302e"); //"I owe you $3000."
-    BN_mod_exp(res, M, e, n, ctx); // res = (M^e) mod n
-    printBN("encrypted message $3000 = ", res);
-    BN_mod_exp(res2, res, d, n, ctx); // res2 = (res^d) mod n
-    printBN("decrypted message $3000 =", res2);
+    BN_mod_exp(res, M, d, n, ctx); // res = (M^e) mod n
+    printBN("signed message $3000 = ", res);
+    BN_mod_exp(res2, res, e, n, ctx); // res2 = (res^d) mod n
+    printBN("verified message $3000 =", res2);
 
     //And they lived happily ever after.
     return 0;

@@ -30,14 +30,14 @@ int main ()
     BN_hex2bn(&n, "AE1CD4DC432798D933779FBD46C6E1247F0CF1233595113AA51B450F18116115");
     BN_hex2bn(&S, "643D6F34902D9C7EC90CB0B2BCA36C47FA37165C0005CAB026C0542CBDB6802F");
     //Jesse, JESSE- Did you just ask Gus launch a nuclear missile?
-    BN_mod_exp(&S, &S, &e, &n, &ctx);
-    printBN(' ', S);
+    BN_mod_exp(res, S, e, n, ctx);
+    printBN("verified: ", res);
     //Yes mr white
 
     //Corrupted
     BN_hex2bn(&S, "643D6F34902D9C7EC90CB0B2BCA36C47FA37165C0005CAB026C0542CBDB6803F"); //...2F -> ...3F
     //Jesse, JESSE- The signature is corrupted Jesse
-    BN_mod_exp(&S, &S, &e, &n, &ctx);
-    printBN(' ', S);
+    BN_mod_exp(res2, S, e, n, ctx);
+    printBN("verified: ", res2);
     return 0;
 }
